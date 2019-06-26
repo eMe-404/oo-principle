@@ -14,6 +14,20 @@
 2. 增加单位，相同单位进行比较，不同单位不比较，比如1m == 1m，10cm == 10cm，显示的时候也需要展示单位
 3. 增加单位换算，支持换算比较，比如 1m = 100cm
 
+#### Tasking:
+* scenario1
+   * **given**: two length and  one of them larger then another 
+   * **when**: compare the larger length to the other one
+   * **then**: return "{{largerLength}} is larger then {{shorterLength}}"
+* scenario2
+   * **given**: two length and  one of them larger then another
+   * **when**: compare the shorter length to the other one
+   * **then**: return "{{shorterLength}} is shorter then {{largerLength}}"
+* scenario3
+   * **given**: two length and  their length are same
+   * **when**: compare one to the other
+   * **then**: return "their length are same!"
+
 
 ### Rectangle（继承）
 1. 有一个长方形，可以设置宽和高，也可以获取宽和高，可以求面积
