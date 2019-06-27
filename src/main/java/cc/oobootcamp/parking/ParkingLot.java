@@ -3,20 +3,22 @@ package cc.oobootcamp.parking;
 
 class ParkingLot {
     private int emptySpace;
+    private int totalSpace;
 
-    ParkingLot(int totalEmptySpace) {
-        this.emptySpace = totalEmptySpace;
+    ParkingLot(int totalSpace) {
+        this.totalSpace = totalSpace;
+        this.emptySpace = totalSpace;
     }
 
-    Ticket parking(Car car) {
+    String checkSpace() {
         if (emptySpace > 0) {
-
-            return new Ticket(car.getCarId());
+            return "there has empty space in parking lot";
         }
-        return null;
+        return "parking lot is full, sorry";
     }
 
-    public boolean canParking() {
-        return emptySpace > 0;
+    Ticket park(Car car) {
+        this.emptySpace = emptySpace - 1;
+        return new Ticket(car.getCarId());
     }
 }
