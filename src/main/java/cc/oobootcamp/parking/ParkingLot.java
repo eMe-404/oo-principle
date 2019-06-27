@@ -4,8 +4,8 @@ package cc.oobootcamp.parking;
 class ParkingLot {
     private int emptySpace;
 
-    ParkingLot(int emptySpace) {
-        this.emptySpace = emptySpace;
+    ParkingLot(int totalEmptySpace) {
+        this.emptySpace = totalEmptySpace;
     }
 
     Ticket parking(Car car) {
