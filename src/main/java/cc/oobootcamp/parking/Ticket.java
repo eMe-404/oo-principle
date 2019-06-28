@@ -7,4 +7,8 @@ public class Ticket {
     public Ticket(String carId) {
         this.carId = carId;
     }
+
+    public String getCarId() {
+        return carId;
+    }
 }

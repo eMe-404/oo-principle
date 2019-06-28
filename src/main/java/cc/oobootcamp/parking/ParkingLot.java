@@ -16,7 +16,11 @@ class ParkingLot {
         return null;
     }
 
-    public boolean canParking() {
+    boolean canParking() {
         return emptySpace > 0;
+    }
+
+    boolean pickUp(Car car, Ticket ticket) {
+        return car != null && ticket != null && car.getCarId().equals(ticket.getCarId());
     }
 }
