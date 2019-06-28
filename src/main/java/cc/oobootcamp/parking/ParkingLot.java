@@ -1,9 +1,13 @@
 package cc.oobootcamp.parking;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 class ParkingLot {
     private int emptySpace;
     private int totalSpace;
+    private List<Car> parkedCars = new ArrayList<>();
 
     ParkingLot(int totalSpace) {
         this.totalSpace = totalSpace;
@@ -18,7 +22,20 @@ class ParkingLot {
     }
 
     Ticket park(Car car) {
-        this.emptySpace = emptySpace - 1;
+        parkedCars.add(car);
+        this.emptySpace = totalSpace - parkedCars.size();
         return new Ticket(car.getCarId());
+    }
+
+    String takeCar(Ticket ticket) {
+        if (hasCar(ticket.getCarId())) {
+            return "farewell";
+        }
+        return "you got the wrong ticket!";
+    }
+
+    private boolean hasCar(String carId) {
+        return parkedCars.stream()
+                .anyMatch(car -> car.getCarId().equals(carId));
     }
 }

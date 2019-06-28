@@ -39,4 +39,28 @@ public class ParkingLotTest {
         assertNotNull(ticket);
     }
 
+    @Test
+    public void should_let_the_car_leave_when_take_car_given_valid_ticket() {
+        Car car = new Car("ABC12345");
+        ParkingLot parkingLot = new ParkingLot(1);
+        Ticket ticket = parkingLot.park(car);
+        String expectedMessage = "farewell";
+
+        String actualMessage = parkingLot.takeCar(ticket);
+
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void should_reject_to_leave_when_take_car_given_invalid_ticket() {
+        Car car = new Car("ABC12345");
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(car);
+        Ticket wrongTicket = new Ticket("CBA12345");
+        String expectedMessage = "you got the wrong ticket!";
+
+        String actualMessage = parkingLot.takeCar(wrongTicket);
+
+        assertEquals(expectedMessage, actualMessage);
+    }
 }

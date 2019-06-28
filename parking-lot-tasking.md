@@ -15,7 +15,7 @@
     * when：park
     * then：give a ticket
 
-* **scenario4**
+* **scenario4** ??
 ***TODO*** confirm the concurrency of the parking lot (how many entries of it)
     * given: entered car but space is full
     * when：park
@@ -28,7 +28,7 @@
     * then: indicate that the car is in our parking lot
     
 * **scenario6**
-    * given: parked car and the ticket with correct car id 
+    * given: parked car and the valid ticket 
     * when: take car
     * then: let the car leave
 
