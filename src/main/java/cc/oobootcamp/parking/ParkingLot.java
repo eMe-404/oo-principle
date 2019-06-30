@@ -37,7 +37,20 @@ class ParkingLot {
         return null;
     }
 
-    public List<Car> getParkedCars() {
+    List<Car> getParkedCars() {
         return parkedCars;
+    }
+
+    boolean contains(Car car) {
+        Car carInParkingLot = parkedCars.stream()
+                .filter(parkedCar -> parkedCar.getCarId().equals(car.getCarId()))
+                .findFirst()
+                .orElse(null);
+
+        return null != carInParkingLot;
+    }
+
+    int getEmptySpace() {
+        return emptySpace;
     }
 }
