@@ -10,14 +10,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GraduateParkingBoyTest {
+    private Car car = new Car("ABC123456");
+
     @Test
     public void should_park_car_to_first_parking_lot_when_park_car_given_multi_parking_lot_with_available_space() {
         List<ParkingLot> parkingLotList = asList(new ParkingLot(10),
                 new ParkingLot(10),
                 new ParkingLot(10));
 
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
-        Car car = new Car("ABC123456");
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy(parkingLotList);
 
         parkingBoy.park(car);
 
@@ -31,8 +32,7 @@ public class GraduateParkingBoyTest {
                 new ParkingLot(0),
                 new ParkingLot(0));
 
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
-        Car car = new Car("ABC123456");
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy(parkingLotList);
 
         assertThrows(ParkingLotIsFullException.class, () -> parkingBoy.park(car));
     }
@@ -45,8 +45,7 @@ public class GraduateParkingBoyTest {
                 new ParkingLot(10),
                 new ParkingLot(10));
 
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
-        Car car = new Car("ABC123456");
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy(parkingLotList);
 
         parkingBoy.park(car);
 
@@ -62,8 +61,7 @@ public class GraduateParkingBoyTest {
                 new ParkingLot(0),
                 new ParkingLot(0));
 
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
-        Car car = new Car("ABC123456");
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy(parkingLotList);
 
         parkingBoy.park(car);
 
@@ -76,8 +74,7 @@ public class GraduateParkingBoyTest {
 
         List<ParkingLot> parkingLotList = asList(new ParkingLot(1),
                 new ParkingLot(0));
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
-        Car car = new Car("ABC1234");
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy(parkingLotList);
         Ticket ticket = parkingBoy.park(car);
 
         assertNotNull(parkingBoy.pickUp(ticket));
@@ -87,12 +84,11 @@ public class GraduateParkingBoyTest {
     public void should_not_take_car_when_pick_up_car_given_ticket_without_corresponding_car() {
         List<ParkingLot> parkingLotList = asList(new ParkingLot(1),
                 new ParkingLot(0));
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy(parkingLotList);
         Car car = new Car("ABC1234");
         parkingBoy.park(car);
         Ticket ticket = new Ticket("DEF1234");
 
         assertThrows(TicketInvalidException.class, () -> parkingBoy.pickUp(ticket));
     }
-
 }

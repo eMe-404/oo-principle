@@ -19,14 +19,4 @@ public class GraduateParkingBoy extends ParkingBoy {
 
         return new Ticket(car.getCarId());
     }
-
-    @Override
-    public Car pickUp(Ticket ticket) {
-        return super.getManagedParkingLots()
-                .stream()
-                .map(parkingLot -> parkingLot.pickUp(ticket))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElseThrow(TicketInvalidException::new);
-    }
 }

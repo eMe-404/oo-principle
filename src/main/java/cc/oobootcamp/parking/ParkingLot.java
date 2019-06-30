@@ -15,6 +15,7 @@ class ParkingLot {
     Ticket parking(Car car) {
         if (emptySpace > 0) {
             parkedCars.add(car);
+            emptySpace --;
             return new Ticket(car.getCarId());
         }
         return null;

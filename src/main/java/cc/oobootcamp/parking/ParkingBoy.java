@@ -1,6 +1,7 @@
 package cc.oobootcamp.parking;
 
 import java.util.List;
+import java.util.Objects;
 
 public abstract class ParkingBoy {
     private List<ParkingLot> parkingLotList;
@@ -9,11 +10,18 @@ public abstract class ParkingBoy {
         this.parkingLotList = parkingLotList;
     }
 
-    public abstract Ticket park(Car car);
-
     public List<ParkingLot> getManagedParkingLots() {
         return parkingLotList;
     }
 
-    public abstract Car pickUp(Ticket ticket);
+    public abstract Ticket park(Car car);
+
+    public Car pickUp(Ticket ticket) {
+        return parkingLotList
+                .stream()
+                .map(parkingLot -> parkingLot.pickUp(ticket))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElseThrow(TicketInvalidException::new);
+    }
 }

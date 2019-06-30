@@ -60,7 +60,7 @@
     * then: park the car to the parking lot which has most available space 
 
 * **scenario2**
-    * given: 多个停车场，剩余车位最多的停车场有多个
-    * when: 停车
-    * then: 停入第一个剩余车位最多的停车场 
+    * given: multi parking lot have most available space 
+    * when: parking boy park car
+    * then: park the car to the first parking lot which has most available space
    
