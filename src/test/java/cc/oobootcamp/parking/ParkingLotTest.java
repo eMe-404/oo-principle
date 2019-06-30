@@ -47,4 +47,25 @@ public class ParkingLotTest {
         assertNull(ticket);
     }
 
+    @Test
+    public void should_let_car_out_when_car_id_in_ticket_is_valid() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car("ABC12345");
+        parkingLot.parking(car);
+        Ticket ticket = new Ticket("ABC12345");
+
+        Car pickedUpCar = parkingLot.pickUp(ticket);
+
+        assertNotNull(pickedUpCar);
+    }
+
+    @Test
+    public void should_not_let_car_out_when_car_id_in_ticket_is_invalid() {
+        ParkingLot parkingLot = new ParkingLot(0);
+        Ticket ticket = new Ticket("ABC67890");
+
+        Car pickedUpCar = parkingLot.pickUp(ticket);
+
+        assertNull(pickedUpCar);
+    }
 }
