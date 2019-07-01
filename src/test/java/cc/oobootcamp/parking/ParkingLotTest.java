@@ -1,5 +1,7 @@
 package cc.oobootcamp.parking;
 
+import cc.oobootcamp.car.Car;
+import cc.oobootcamp.ticket.Ticket;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;

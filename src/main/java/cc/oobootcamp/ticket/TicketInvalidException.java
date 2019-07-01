@@ -1,4 +1,4 @@
-package cc.oobootcamp.parking;
+package cc.oobootcamp.ticket;
 
 public class TicketInvalidException extends RuntimeException {
 }

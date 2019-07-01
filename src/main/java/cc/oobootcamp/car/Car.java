@@ -1,4 +1,4 @@
-package cc.oobootcamp.parking;
+package cc.oobootcamp.car;
 
 import java.util.Objects;
 

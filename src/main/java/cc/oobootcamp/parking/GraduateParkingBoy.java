@@ -1,7 +1,9 @@
 package cc.oobootcamp.parking;
 
+import cc.oobootcamp.car.Car;
+import cc.oobootcamp.ticket.Ticket;
+
 import java.util.List;
-import java.util.Objects;
 
 public class GraduateParkingBoy extends ParkingBoy {
 

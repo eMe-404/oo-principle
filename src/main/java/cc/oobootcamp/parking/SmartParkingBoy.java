@@ -1,5 +1,8 @@
 package cc.oobootcamp.parking;
 
+import cc.oobootcamp.car.Car;
+import cc.oobootcamp.ticket.Ticket;
+
 import java.util.Comparator;
 import java.util.List;
 

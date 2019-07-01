@@ -1,5 +1,9 @@
 package cc.oobootcamp.parking;
 
+import cc.oobootcamp.car.Car;
+import cc.oobootcamp.ticket.Ticket;
+import cc.oobootcamp.ticket.TicketInvalidException;
+
 import java.util.List;
 import java.util.Objects;
 
