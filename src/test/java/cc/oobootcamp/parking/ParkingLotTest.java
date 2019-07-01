@@ -2,65 +2,70 @@ package cc.oobootcamp.parking;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 public class ParkingLotTest {
 
     @Test
-    public void should_indicate_there_has_empty_space_when_check_space_given_empty_space() {
+    public void should_let_the_car_in_when_parking_given_parking_car_and_has_space() {
         ParkingLot parkingLot = new ParkingLot(1);
-        String expectedResult = "there has empty space in parking lot";
 
-        String actualResult = parkingLot.checkSpace();
+        boolean canParking = parkingLot.canParking();
 
-        assertEquals(expectedResult, actualResult);
+        assertTrue(canParking);
     }
 
     @Test
-    public void should_indicate_parking_lot_is_full_when_check_given_no_empty_space() {
-        ParkingLot parkingLot = new ParkingLot(1);
-        Car car = new Car("ABC123456");
-        parkingLot.park(car);
-        String expectedResult = "parking lot is full, sorry";
+    public void should_dont_let_the_car_in_when_parking_given_parking_car_and_has_no_space() {
+        ParkingLot parkingLot = new ParkingLot(0);
 
-        String actualResult = parkingLot.checkSpace();
+        boolean canParking = parkingLot.canParking();
 
-        assertEquals(expectedResult, actualResult);
+        assertFalse(canParking);
     }
 
     @Test
-    public void should_give_a_ticket_when_park_given_entered_car() {
+    public void should_give_ticket_when_parking_given_car_parking_and_has_space() {
         Car car = new Car("ABC12345");
         ParkingLot parkingLot = new ParkingLot(1);
 
-        Ticket ticket = parkingLot.park(car);
+        Ticket ticket = parkingLot.parking(car);
 
         assertNotNull(ticket);
     }
 
     @Test
-    public void should_let_the_car_leave_when_take_car_given_valid_ticket() {
+    public void should_dont_give_ticket_when_parking_given_car_parking_and_has_no_space() {
         Car car = new Car("ABC12345");
-        ParkingLot parkingLot = new ParkingLot(1);
-        Ticket ticket = parkingLot.park(car);
-        String expectedMessage = "farewell";
+        ParkingLot parkingLot = new ParkingLot(0);
 
-        String actualMessage = parkingLot.takeCar(ticket);
+        Ticket ticket = parkingLot.parking(car);
 
-        assertEquals(expectedMessage, actualMessage);
+        assertNull(ticket);
     }
 
     @Test
-    public void should_reject_to_leave_when_take_car_given_invalid_ticket() {
-        Car car = new Car("ABC12345");
+    public void should_let_car_out_when_car_id_in_ticket_is_valid() {
         ParkingLot parkingLot = new ParkingLot(1);
-        parkingLot.park(car);
-        Ticket wrongTicket = new Ticket("CBA12345");
-        String expectedMessage = "you got the wrong ticket!";
+        Car car = new Car("ABC12345");
+        parkingLot.parking(car);
+        Ticket ticket = new Ticket("ABC12345");
 
-        String actualMessage = parkingLot.takeCar(wrongTicket);
+        Car pickedUpCar = parkingLot.pickUp(ticket);
 
-        assertEquals(expectedMessage, actualMessage);
+        assertNotNull(pickedUpCar);
+    }
+
+    @Test
+    public void should_not_let_car_out_when_car_id_in_ticket_is_invalid() {
+        ParkingLot parkingLot = new ParkingLot(0);
+        Ticket ticket = new Ticket("ABC67890");
+
+        Car pickedUpCar = parkingLot.pickUp(ticket);
+
+        assertNull(pickedUpCar);
     }
 }

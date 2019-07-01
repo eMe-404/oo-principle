@@ -5,37 +5,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ParkingLot {
-    private int emptySpace;
-    private int totalSpace;
     private List<Car> parkedCars = new ArrayList<>();
+    private int emptySpace;
 
-    ParkingLot(int totalSpace) {
-        this.totalSpace = totalSpace;
-        this.emptySpace = totalSpace;
+    ParkingLot(int emptySpace) {
+        this.emptySpace = emptySpace;
     }
 
-    String checkSpace() {
+    Ticket parking(Car car) {
         if (emptySpace > 0) {
-            return "there has empty space in parking lot";
+            parkedCars.add(car);
+            emptySpace --;
+            return new Ticket(car.getCarId());
         }
-        return "parking lot is full, sorry";
+        return null;
     }
 
-    Ticket park(Car car) {
-        parkedCars.add(car);
-        this.emptySpace = totalSpace - parkedCars.size();
-        return new Ticket(car.getCarId());
+    boolean canParking() {
+        return emptySpace > 0;
     }
 
-    String takeCar(Ticket ticket) {
-        if (hasCar(ticket.getCarId())) {
-            return "farewell";
+    Car pickUp(Ticket ticket) {
+        Car carInParkingLot = parkedCars.stream()
+                .filter(car -> car.getCarId().equals(ticket.getCarId()))
+                .findFirst()
+                .orElse(null);
+
+        if (null != carInParkingLot) {
+            parkedCars.remove(carInParkingLot);
+            return carInParkingLot;
         }
-        return "you got the wrong ticket!";
+        return null;
     }
 
-    private boolean hasCar(String carId) {
-        return parkedCars.stream()
-                .anyMatch(car -> car.getCarId().equals(carId));
+    List<Car> getParkedCars() {
+        return parkedCars;
+    }
+
+    boolean contains(Car car) {
+        Car carInParkingLot = parkedCars.stream()
+                .filter(parkedCar -> parkedCar.getCarId().equals(car.getCarId()))
+                .findFirst()
+                .orElse(null);
+
+        return null != carInParkingLot;
+    }
+
+    int getEmptySpace() {
+        return emptySpace;
     }
 }

@@ -2,41 +2,65 @@
 
 * **scenario1**
     * given: parking car and has empty space
-    * when：check space
-    * then：indicate that there is empty space in the parking lot
+    * when：parking
+    * then：let the car park and give a ticket and empty space decrease one
 
 * **scenario2**
-    * given: parking car but no empty space
-    * when：check space
-    * then：indicate that parking lot is full
+    * given: parking car and has not empty space
+    * when: parking
+    * then: reject the car to enter
 
 * **scenario3**
-    * given: entered car and has empty space
-    * when：park
-    * then：give a ticket
+    * given: the ticket and the car id is valid
+    * when: pick up the car 
+    * then: let the car out and empty space increase one
 
-* **scenario4** ??
-***TODO*** confirm the concurrency of the parking lot (how many entries of it)
-    * given: entered car but space is full
-    * when：park
-    * then：indicate that the parking lot is full
-
-* **scenario5**  ??  
-***TODO:*** clarify the parking lot security, do we need to consider that (is there ever car stolen? or is it might happen in future?)
-    * given: parked car
-    * when: check the car
-    * then: indicate that the car is in our parking lot
+* **scenario4**
+    * given: the ticket and the car id is invalid
+    * when: pick up the car 
+    * then: don't let the car out
     
+---
+
+* **scenario1**
+    * given: multi parking lot with available space
+    * when: parking boy park car
+    * then: park the car to the first parking lot 
+
+* **scenario2**
+    * given: multi parking lot without available space
+    * when: parking boy park car
+    * then: don't park car and indicate parking lot are full 
+
+* **scenario3**
+    * given: 5 parking lot and just last three have available space
+    * when: parking boy park car
+    * then: park the car to the 3rd parking lot 
+
+* **scenario4**
+    * given: 5 parking lot and just first three have available space
+    * when: parking boy park car
+    * then: park the car to the 1st parking lot*
+
+* **scenario5**
+    * given: the ticket with corresponding car
+    * when: pick up the car 
+    * then: get the car
+
 * **scenario6**
-    * given: parked car and the valid ticket 
-    * when: take car
-    * then: let the car leave
+    * given: the ticket without corresponding car
+    * when: pick up the car 
+    * then: don't get the car and indicate the ticket is invalid
+    
+---
 
-* **scenario7**
-    * given: parked car and the ticket with incorrect car id 
-    * when: take car
-    * then: reject to take the car
+* **scenario1**
+    * given: multi parking lot with different available space
+    * when: parking boy park car
+    * then: park the car to the parking lot which has most available space 
 
-
-##NOTE
-* clarification for the scenario 4 & 5 TODO
+* **scenario2**
+    * given: multi parking lot have most available space 
+    * when: parking boy park car
+    * then: park the car to the first parking lot which has most available space
+   
