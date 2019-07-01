@@ -5,7 +5,7 @@ import cc.oobootcamp.ticket.Ticket;
 
 import java.util.List;
 
-public class ParkingLotManager {
+class ParkingLotManager {
     private final List<ParkingLot> parkingLotList;
     private final List<ParkingBoy> parkingBoyList;
 
@@ -28,5 +28,12 @@ public class ParkingLotManager {
         }
 
         return ticketByParkingBoy;
+    }
+
+    Ticket parkBySelf(Car car) {
+        return parkingLotList.stream()
+                .map(parkingLot -> parkingLot.parking(car))
+                .findAny()
+                .orElseThrow(ParkingLotIsFullException::new);
     }
 }

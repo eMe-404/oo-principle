@@ -84,7 +84,7 @@ same as previous task
 
 * **scenario2**
     * given: multi parking lot with available space and a parking boy who can manage all the parking lot  
-    * when: parking lot manager park car
+    * when: parking lot manager park car by self
     * then: parking lot manager park the car and return a ticket
 
 * **scenario3**
