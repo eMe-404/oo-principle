@@ -24,4 +24,16 @@ public abstract class ParkingBoy {
                 .findFirst()
                 .orElseThrow(TicketInvalidException::new);
     }
+
+    public boolean isAvailable() {
+        boolean isAvailable = false;
+        for (ParkingLot parkingLot : parkingLotList) {
+            if (parkingLot.canParking()) {
+                isAvailable = true;
+                break;
+            }
+        }
+
+        return isAvailable;
+    }
 }

@@ -64,3 +64,19 @@
     * when: parking boy park car
     * then: park the car to the first parking lot which has most available space
    
+---
+
+* **scenario1**
+    * given: a manager manages two parking boys which have available parking lots
+    * when: manager received parking request
+    * then: manager choose first available parking boy to parking and return a ticket 
+
+* **scenario2**
+    * given: a manager manages two parking boys and all parking boys have no available parking lots
+    * when: manager received parking request
+    * then: manager parking the car by self and return a ticket 
+
+* **scenario3**
+    * given: a manager manages two parking boys and none of them have available parking lots
+    * when: manager received parking request
+    * then: give a message which indicate parking lot is full 
